@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greenservice
+spec:
+  selector:
+    matchLabels:
+      app: greenservice
+  template:
+    metadata:
+      labels:
+        app: greenservice
+    spec:
+      containers:
+      - name: greenservice
+        image: joaorodriguesjr/greenservice
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blueservice
+spec:
+  selector:
+    matchLabels:
+      app: blueservice
+  template:
+    metadata:
+      labels:
+        app: blueservice
+    spec:
+      containers:
+      - name: blueservice
+        image: joaorodriguesjr/blueservice
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
